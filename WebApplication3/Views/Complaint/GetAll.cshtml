@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+
+    <div style="margin:100px;padding-top:80px">
+
+        @model WebApplication3.Models.Complaint.ComplaintListingModel
+
+        <div id="pn">
+            <h3>Reklamacje</h3>
+            <div id="exercisesTable">
+                <table class="table table-condensed" id="catalogIndexTable">
+                    <thead>
+                        <tr>
+                            <td>Numer Zamówienia</td>
+                            <td>Data utworzenia</td>
+                            <td>Status</td>
+                            <td>Rozwiązanie</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model.Complaints)
+                        {
+                            <tr class="clientRow">
+                                <td class="">@c.OrderNumber</td>
+                                <td class="">@c.CreateDate</td>
+                                <td class="">@c.Status</td>
+                                <td class="">@c.Resolution</td>
+                                <td class="">
+                                    <a asp-controller="Complaint" asp-action="ResolveComplaint" asp-route-ComplaintId="@c.Id">
+                                        Rozwiąż
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div>
+            <a asp-controller="Home" asp-action="Index">
+                Powrót
+            </a>
+        </div>
+    </div>    
+</div>

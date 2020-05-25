@@ -1,0 +1,25 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+    <div style="margin:100px;padding-top:80px">
+        @{
+            ViewData["Title"] = "InsertOrderGoods";
+        }
+
+        <h2>Zlecanie zamówienień</h2>
+        <p> Podaj numer kwitu magazynowego do zlecenia produktów</p>p>
+        @using (Html.BeginForm("OrderGoods", "PackingNote"))
+        {
+            <label for="packingNoteId">Numer Kwitu magazynowego</label>
+            <input id="packingNoteId" name="packingNoteId" type="text" />
+            @Html.RadioButton("PackingNote", true, true)
+            <input type="submit" value="Potwierdź" />
+        }
+
+        <div>
+            <a asp-controller="Home" asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>

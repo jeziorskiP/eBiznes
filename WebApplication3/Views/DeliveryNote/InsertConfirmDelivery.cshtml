@@ -1,0 +1,39 @@
+﻿
+
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+
+        @{
+            ViewData["Title"] = "InsertConfirmDelivery";
+        }
+
+        <h2>Potwierdzenie dostawy</h2>
+        <p></p>
+        <p>Podaj numer kwitu dostawy w celu potwierdzenia jego dostawy</p>
+
+        @using (Html.BeginForm("ConfirmDelivery", "DeliveryNote"))
+        {
+            <label for="DeliveryNoteId">Numer kwitu dostawy</label>
+            <input id="DeliveryNoteId" name="DeliveryNoteId" type="text" />
+            @Html.RadioButton("DeliveryNote", true, true)
+            <input type="submit" value="Potwierdź" />
+        }
+
+
+
+
+
+
+
+
+    </div>
+
+    
+</div>

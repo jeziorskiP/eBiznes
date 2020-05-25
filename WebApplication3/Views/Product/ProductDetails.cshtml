@@ -1,0 +1,136 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+
+        @model WebApplication3.Models.Product.ProductIndexListingModel
+
+        @{
+            ViewData["Title"] = "ProductDetails";
+        }
+
+        <h2>Szczegóły</h2>
+
+        <div style="font-size:15px;width:100%;height:500px;float:left;border:1px solid black;">
+
+
+            <div style="font-size:15px;width:50%;height:210px;float:right; padding:20px">
+                @if (Model.ProductNumber == 1000)
+                {
+                    <img src="~/images/1000.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 1001)
+                {
+                    <img src="~/images/1008.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 1002)
+                {
+                    <img src="~/images/1002.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 1003)
+                {
+                    <img src="~/images/1003.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 1004)
+                {
+                    <img src="~/images/1004.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 1005)
+                {
+                    <img src="~/images/1007.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 1006)
+                {
+                    <img src="~/images/1006.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 2001)
+                {
+                    <img src="~/images/2001.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 2002)
+                {
+                    <img src="~/images/2003_.jpg" alt="" height="200" width="200" />
+                }
+                else if (Model.ProductNumber == 2003)
+                {
+                    <img src="~/images/2003.jpg" alt="" height="200" width="200" />
+                }
+
+
+            </div>
+
+            <div style="font-size:15px;width:50%;height:220px;float:left;padding:20px">
+                <div>
+                    <div>
+                        <label for="@Model.Name">Nazwa:</label>
+                        @Model.Name
+                    </div>
+
+                    <div>
+                        <label for="@Model.Height">Wysokość:</label>
+                        @Model.Height
+
+                    </div>
+                    <div>
+                        <label for="@Model.Width">Szerokość:</label>
+                        @Model.Width
+                    </div>
+
+                    <div>
+                        <label for="@Model.Size">Rozmiar:</label>
+                        @Model.Size
+                    </div>
+
+                    <div>
+                        <label for="@Model.Shape">Kształt:</label>
+                        @Model.Shape
+                    </div>
+                    <div>
+
+                        <label for="@Model.Purpose">Cel:</label>
+                        @Model.Purpose
+                    </div>
+                    <div>
+                        <label for="@Model.Price">Cena:</label>
+                        @Model.Price
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="font-size:15px;width:100%;height:220px;float:left;padding:20px">
+                @using (Html.BeginForm("AddToShoppingCart", "Cart"))
+                {
+                    <input id="productId" name="productId" value="@Model.Id" type="hidden" />
+                    <br />
+                    <b>Ilość:</b>
+                    <input id="amount" name="amount" value="1" type="text" />
+                    <br />
+                    <b>Notatka:</b>
+                    <input id="Note" name="Note" type="text" />
+
+                    <input type="submit" value="Dodaj do koszyka" />
+                }
+
+                <div style="font-size:15px;width:100%;height:220px;float:left;">
+
+                    <div>
+                        <td>
+                            <a asp-controller="Product" asp-action="GetAll">Powrót</a>
+                        </td>
+                    </div>
+
+
+                </div>
+
+          
+            </div>
+        </div>
+
+    </div>
+</div>

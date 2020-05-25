@@ -1,0 +1,43 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+        @model WebApplication3.Models.Complaint.ComplaintIndexListingModel
+
+
+        <h2>Składanie reklamacji</h2>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CreateComplaint">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                    </div>
+
+
+                    <td>
+                        <button asp-action="CreateComplaint" asp-route-OrderId="@ViewBag.OrderId">Złóż</button>
+                    </td>
+
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+
+</div>

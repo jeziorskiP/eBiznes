@@ -1,0 +1,105 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+        @model WebApplication3.Models.PackingNotes.PNDetailsListingModel
+
+        @{
+            ViewData["Title"] = "PackingNoteDetails";
+        }
+
+        <h2>Szczegóły Kwitu magazynowego</h2>
+
+
+        <div style="font-size:15px;width:99%;height:120px;float:left;border:1px solid black;">
+            <div>@Model.PackingNoteDetails.ToList()[0].PackingNoteNumber</div>
+            <div>@Model.PackingNoteDetails.ToList()[0].PackingNoteStatus</div>
+            <div>@Model.PackingNoteDetails.ToList()[0].Note</div>
+        </div>
+
+        <div style="font-size:15px;width:99%;float:left;border:1px solid black;">
+            <div style="font-size:15px;width:50%;height:20px;float:left;border:1px solid black;">Numer produktu</div>
+            <div style="font-size:15px;width:50%;height:20px;float:left;border:1px solid black;">Suma</div>
+
+
+
+            @foreach (var item in Model.PackingNoteDetails.GroupBy(p => p.ProductNumber).Select(x => new { Location = x.Key, Guns = x.Select(y => y.Amount).Sum() }))
+            {
+                <div style="font-size:15px;width:50%;height:20px;float:left;border:1px solid black;">
+
+                    @item.Location
+                </div>
+
+                <div style="font-size:15px;width:50%;height:20px;float:left;border:1px solid black;">@item.Guns</div>
+            }
+
+        </div>
+
+
+
+        <div style="font-size:15px;width:99%;height:30px;float:left;"></div>
+
+
+
+
+        <div id="clientsTable">
+            <table class="table table-condensed" id="catalogIndexTable">
+                <thead>
+                    <tr>
+                        <td>Numer zamówienia</td>
+                        <td>Status zamówienia</td>
+                        <td>Data utworzenia zamówienia</td>
+                        <td>Numer produktu</td>
+                        <td>Nazwa</td>
+                        <td>Kolor</td>
+                        <td>Wysokość</td>
+                        <td>Szerokość</td>
+                        <td>Rozmiar</td>
+                        <td>Kształt</td>
+                        <td>Cel</td>
+                        <td>Ilość</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model.PackingNoteDetails)
+                    {
+                        <tr class="clientRow">
+                            <td class="">
+                                <a asp-controller="Order" asp-action="OrderSummary" asp-route-ActionId="2" asp-route-OrderId="@item.OrderId" asp-route-TempId="@item.PackingNoteId">@item.OrderNumber</a>
+
+
+                            </td>
+                            <td class="">@item.OrderStatus</td>
+                            <td class="">@item.OrderCreationDate</td>
+                            <td class="">@item.ProductNumber</td>
+                            <td class="">@item.Name</td>
+                            <td class="">@item.Color</td>
+                            <td class="">@item.Height</td>
+                            <td class="">@item.Width</td>
+                            <td class="">@item.Size</td>
+                            <td class="">@item.Shape</td>
+                            <td class="">@item.Purpose</td>
+                            <td class="">@item.Amount</td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <div>
+            <a asp-action="ReviewPackingNotes">Powrót</a>
+        </div>
+    </div>
+
+    
+</div>

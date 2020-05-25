@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+        @model WebApplication3.Models.DeliveryNotes.DeliveryNoteListingModel
+        @{
+            ViewData["Title"] = "ReviewDeliveryNotes";
+        }
+
+        <div id="pn">
+            <h3>Kwity dostaw</h3>
+            <div id="exercisesTable">
+                <table class="table table-condensed" id="catalogIndexTable">
+                    <thead>
+                        <tr>
+                            <td>Numer Kwitu dostawy</td>
+                            <td>Data utworzenia</td>
+                            <td>Status</td>
+                            <td>Numer zamówienia</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var dn in Model.DeliveryNotes)
+                        {
+                            <tr class="clientRow">
+                                <td class="">@dn.DeliveryNoteNumber</td>
+                                <td class="">@dn.CreationTime</td>
+                                <td class="">@dn.DeliveryNoteStatus</td>
+                                <td class="">@dn.OrderNumber</td>
+                                <td class="">
+                                    <a asp-controller="DeliveryNote" asp-action="DeliveryNoteDetails" asp-route-DeliveryNoteId="@dn.DeliveryNoteId">
+                                        Szczegóły
+                                    </a>
+                                </td>
+                                @if (dn.DeliveryNoteStatus == "Rozpoczęte")
+                                {
+                                    <td class="">
+                                        <a asp-controller="DeliveryNote" asp-action="ConfirmDelivery" asp-route-DeliveryNoteId="@dn.DeliveryNoteId">
+                                            Potwierdź wysyłkę
+                                        </a>
+                                    </td>
+
+                                }
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div>
+            <a asp-controller="Home" asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>

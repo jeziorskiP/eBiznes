@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg" style="background-color:#1f2124">
+
+
+    <div style="        margin-left: 100px;
+        margin-right: 100px;
+        margin-bottom: 100px;
+        margin-top: 50px">
+
+
+        <div class="row" style="border:dashed">
+
+            @model WebApplication3.Models.Product.ProductIndexModel
+            <div>
+
+                @await Html.PartialAsync("Carousel")
+            </div>
+            <div style="width:100%;height:50px"></div>
+            <div style="width:100%;height:auto;padding:20px">
+                <text style="font-size:30px; color:aliceblue;">
+                    Baloon - witamy na najfajniejszej stronie poświęconej poczcie balonowej.
+                    U nas znajdziesz najnowsze trendy, najlepszą obsługę i niezapomniane wrażenia.
+                    Sam się przekonaj! Zobacz naszą ofertę!
+                </text>
+                <a class="btn btn-success" asp-controller="Product" asp-action="GetAll" style="margin: 0 auto; display: block;">
+                    <h2>Sprawdz ofertę</h2>
+                </a>
+
+            </div>
+
+            <div style="width:100%;height:50px"></div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+        @model WebApplication3.Models.Invoice.InvoiceLinesListingModel
+
+        <table class="table table-condensed" id="catalogIndexTable">
+            <thead>
+                <tr>
+                    <td>Nazwa Produktu</td>
+                    <td>Cena</td>
+                    <td>Ilość</td>
+                    <td>Wartość</td>
+                    <td>Akcja</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.InvoiceLines)
+                {
+                    <tr class="clientRow">
+                        <td class="">@item.ProductName</td>
+                        <td class="">@item.Price</td>
+                        <td class="">@item.Amount</td>
+                        <td class="">@item.TotalPrice</td>
+                        <td class="">
+                            <a asp-controller="Invoice" asp-action="UpdateLine" asp-route-InvoiceLineId="@item.InvoiceLineId">
+                                Zmień
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

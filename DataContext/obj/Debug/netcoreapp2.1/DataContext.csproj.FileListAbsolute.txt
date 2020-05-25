@@ -1,0 +1,10 @@
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\bin\Debug\netcoreapp2.1\DataContext.deps.json
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\bin\Debug\netcoreapp2.1\DataContext.runtimeconfig.json
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\bin\Debug\netcoreapp2.1\DataContext.runtimeconfig.dev.json
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\bin\Debug\netcoreapp2.1\DataContext.dll
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\bin\Debug\netcoreapp2.1\DataContext.pdb
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\obj\Debug\netcoreapp2.1\DataContext.AssemblyInfoInputs.cache
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\obj\Debug\netcoreapp2.1\DataContext.AssemblyInfo.cs
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\obj\Debug\netcoreapp2.1\DataContext.dll
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\obj\Debug\netcoreapp2.1\DataContext.pdb
+D:\Sources\VisualStudioRepo\WebApplication3\DataContext\obj\Debug\netcoreapp2.1\DataContext.csprojAssemblyReference.cache

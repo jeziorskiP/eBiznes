@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+
+
+
+
+
+    @model WebApplication3.Models.Complaint.ComplaintIndexListingModel
+
+
+    <h4>Reklamacja - Podsumowanie</h4>
+    <div id="Complaint">
+        <div id="ComplaintTable">
+            <table class="table table-condensed" id="catalogIndexTable">
+                <thead>
+                    <tr>
+                        <td>Number zamówienia:</td>
+                        <td>Data utworzenia:</td>
+                        <td>Status:</td>
+                        <td>Opis:</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr class="clientRow">
+
+                        <td class="">@Model.OrderNumber</td>
+                        <td class="">@Model.CreateDate</td>
+                        <td class="">@Model.Status</td>
+                        <td class="">@Model.Description</td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+    <div>
+        <a asp-controller="Home" asp-action="Index">Powrót</a>
+    </div>
+</div>

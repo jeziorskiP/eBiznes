@@ -1,0 +1,42 @@
+﻿
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+        <h2>Wydaj towar do dostawy</h2>
+
+        @using (Html.BeginForm("GiveGoods2", "PackingNote"))
+        {
+            <b>
+                Podaj numer kwitu magazynowego lub numer zamówienia:
+            </b>
+            <br />
+            <br />
+  
+            <label for="OrderNumber">Numer zamówienia</label>
+            <input id="OrderNumber" name="OrderNumber" type="text" />
+
+            <br />
+      
+            <label for="PackingNoteNumber">Numer kwitu magazynowego</label>
+            <input id="PackingNoteNumber" name="PackingNoteNumber" type="text" />
+
+            <br />
+            <b>
+                Notatka:
+            </b>
+            <input id="Note" name="Note" type="text" />
+
+            <input type="submit" value="Potwierdź" />
+        }
+
+        <div>
+            <a asp-controller="Home" asp-action="Index">Powrót</a>
+        </div>
+    </div> 
+</div>

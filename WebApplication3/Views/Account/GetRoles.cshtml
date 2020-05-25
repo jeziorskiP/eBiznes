@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    @using Microsoft.AspNetCore.Identity;
+    @model IEnumerable<IdentityRole>
+    @{
+        ViewData["Title"] = "GetRoles";
+    }
+
+    <div style="margin:100px;padding-top:80px">
+
+        <div>
+            <h2>Role</h2>
+            <a asp-controller="Account" asp-action="CreateRole" class="btn btn-success">Nowa</a>
+        </div>
+        <p> </p>
+        <div>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div>
+                        <div>ID: @item.Id </div>
+                        <div>Nazwa: @item.Name </div>
+                        <div>
+                            <a class="btn btn-danger" asp-controller="Account" asp-action="DeleteRole" asp-route-RoleId="@item.Id" >Usuń</a>
+                            <a class="btn btn-success" asp-controller="Account" asp-action="EditUsersInRole" asp-route-RoleId=  "@item.Id">Dodaj/Usuń użytkownika</a>
+
+                        </div>
+                    </div>
+
+                }
+            }
+            else
+            {
+                <div>
+                    <div>
+                        Brak ról
+                    </div>
+                    <div>
+                        <h5>Naciśniej poniżej, aby stworzyć nową rolę</h5>
+                        <a class="btn btn-primary" asp-controller="Account" asp-action="CreateRole">Stwórz rolę</a>
+                    </div>
+
+
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+

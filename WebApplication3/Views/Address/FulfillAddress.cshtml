@@ -1,0 +1,51 @@
+﻿
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+    <div style="margin:100px;padding-top:80px">
+
+        @model WebApplication3.Models.Address.AddressIndexListingModel
+
+
+        <h2>Podaj adres dostawy</h2>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="FulfillAddress">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Street" class="control-label">Ulica</label>
+                        <input asp-for="Street" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StreetNumber" class="control-label">Numer domu</label>
+                        <input asp-for="StreetNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AppartmentNumber" class="control-label">Numer mieszkania</label>
+                        <input asp-for="AppartmentNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PostCode" class="control-label">Kod pocztowy</label>
+                        <input asp-for="PostCode" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="City" class="control-label">Miejscowość</label>
+                        <input asp-for="City" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Country" class="control-label">Kraj</label>
+                        <input asp-for="Country" class="form-control" />
+                    </div>
+
+                    <td>
+                        <button asp-controller="Address" asp-action="FulfillAddress" asp-route-OrderId="@ViewBag.OrderId">Dalej</button>
+                    </td>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

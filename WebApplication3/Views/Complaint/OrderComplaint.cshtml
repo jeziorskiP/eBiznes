@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "OrderComplaint";
+}
+
+<h2>OrderComplaint</h2>
+
+
+
+
+
+@using (Html.BeginForm("OrderComplaint", "Complaint"))
+{
+    <input id="OrderNumber" name="OrderNumber" type="text" />
+    <input id="email" name="email" type="text" />
+    <input type = "submit" value = "Do it" />
+}
+

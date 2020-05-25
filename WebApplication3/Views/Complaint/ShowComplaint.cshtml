@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+        @model WebApplication3.Models.Complaint.ComplaintListingModel
+        @{
+            ViewData["Title"] = "GetAll";
+        }
+
+
+        <div id="clients">
+            <h3>Reklamacja</h3>
+            <div id="clientsTable">
+                <table class="table table-condensed" id="catalogIndexTable">
+                    <thead>
+                        <tr>
+                            <td>Numer zamówienia</td>
+                            <td>Data utworzenie </td>
+                            <td>Opis</td>
+                            <td>Status</td>
+                            <td>Rozwiązanie</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model.Complaints)
+                        {
+                            <tr class="clientRow">
+                                <td class="">@c.OrderNumber</td>
+                                <td class="">@c.CreateDate</td>
+                                <td class="">@c.Description</td>
+                                <td class="">@c.Status</td>
+                                <td class="">@c.Resolution</td>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <td>
+                                        <a asp-action="ResolveComplaint" asp-route-ComplaintId="@c.Id">Rozwiąż</a>
+                                    </td>
+                                }
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+    
+</div>

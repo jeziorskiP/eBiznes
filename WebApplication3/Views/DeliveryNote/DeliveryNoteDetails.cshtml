@@ -1,0 +1,89 @@
+﻿
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+
+        @model WebApplication3.Models.DeliveryNotes.DNDetailsListingModel
+        @{
+            ViewData["Title"] = "DeliveryNoteDetails";
+        }
+
+        <h2>Szczegóły kwitu dostawy</h2>
+
+
+        <div style="font-size:15px;width:49%;height:120px;float:left;border:1px solid black;">
+            <div>@Model.DeliveryNotes.FirstOrDefault().ClientNumber.ToString()</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().ClientName</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().ClientSurname</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().ClientPhoneNumer</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().Clientemail</div>
+        </div>
+        <div style="font-size:15px;width:49%;height:120px;float:left;border:1px solid black;">
+            <div>@Model.DeliveryNotes.FirstOrDefault().AddressStreet</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().AddressStreetNumber</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().AddressAppartmentNumber</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().AddressPostCode</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().AddressCity</div>
+            <div>@Model.DeliveryNotes.FirstOrDefault().AddressCountry</div>
+        </div>
+
+
+
+
+        <div style="font-size:15px;width:99%;height:30px;float:left;"></div>
+
+
+
+
+        <div id="clientsTable">
+            <table class="table table-condensed" id="catalogIndexTable">
+                <thead>
+                    <tr>
+                        <td>Numer Zamówienia</td>
+                        <td>Status zamówenia</td>
+                        <td>Data utworzenia zamówienia</td>
+                        <td>Numer produktu</td>
+                        <td>Nazwa produktu</td>
+                        <td>Ilość</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model.DeliveryNotes)
+                    {
+                        <tr class="clientRow">
+                            <td class="">
+                                <a asp-controller="Order" asp-action="OrderSummary" asp-route-OrderId="@item.OrderId">@item.OrderNumber</a>
+
+
+                            </td>
+                            <td class="">@item.OrderStatus</td>
+                            <td class="">@item.OrderCreationDate</td>
+                            <td class="">@item.ProductNumber</td>
+                            <td class="">@item.ProductName</td>
+                            <td class="">@item.ProductAmount</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <a asp-action="ReviewDeliveryNotes">Powrót</a>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>

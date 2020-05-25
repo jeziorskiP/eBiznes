@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    @using Microsoft.AspNetCore.Identity;
+    @model IEnumerable<IdentityUser>
+
+
+    <div style="margin:100px;padding-top:80px">
+
+        <div>
+            <h2>Użytkownicy</h2>
+            <a asp-controller="Account" asp-action="Register" class="btn btn-success">Nowy</a>
+        </div>
+        <p> </p>
+        <div>
+            @if (Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div>
+                        <div>ID: @item.Id </div>
+                        <div>Nazwa: @item.Email </div>
+                        <div>
+                            <a class="btn btn-danger" asp-controller="Account" asp-action="DeleteUser" asp-route-UserId="@item.Id">Usuń</a>
+
+                        </div>
+                    </div>
+
+                }
+            }
+            else
+            {
+                <div>
+                    <div>
+                        Brak użytkowników
+                    </div>
+                    <div>
+                        <h5>Naciśniej poniżej, aby stworzyć nowego użytkownika</h5>
+                        <a class="btn btn-primary" asp-controller="Account" asp-action="CreateUser">Stwórz nowego użytkownika</a>
+                    </div>
+
+
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+

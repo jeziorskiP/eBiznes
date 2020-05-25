@@ -1,0 +1,45 @@
+﻿
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+        @{
+            ViewData["Title"] = "Pay";
+        }
+
+        <h2>PAYU</h2>
+
+        <div>Jestes w zewnetrznym module platnosci</div>
+        <div>Dane przekazywane do zewnetrzenego modulu:</div>
+        <div>
+            Do zaplaty: @ViewBag.Total
+        </div>
+        <div>
+            ID FAKTURY: @ViewBag.InvoiceId
+        </div>
+        <div>
+            ID ZAMOWIENIA: @ViewBag.OrderId
+        </div>
+
+
+        <div>PLACTOSC ZA POMOCA ZEWNETRZNEGO SYSTEMU.</div>
+
+
+
+        <div>Po klikniecie PayU, dokonujesz planotnosci. Gdy skoczysz Wracasz na stronę głóną</div>
+
+
+        <div>
+            <td>
+                <a asp-action="PAYUPage" asp-route-OrderId="@ViewBag.OrderId">Pay</a>
+            </td>
+        </div>
+    </div>
+</div>
+
+   

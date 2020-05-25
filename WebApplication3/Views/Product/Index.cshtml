@@ -1,0 +1,222 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Visual Admin Dashboard - Preferences</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+    <!--
+    Visual Admin Template
+    https://templatemo.com/tm-455-visual-admin
+    -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/templatemo-style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <!-- Left column -->
+    <div class="templatemo-flex-row">
+        <div class="templatemo-sidebar">
+            <header class="templatemo-site-header">
+                <div class="square"></div>
+                <h1>Baloon Companny</h1>
+            </header>
+            <div class="profile-photo-container">
+                <img src="~/images/profile-photo.jpg" alt="Profile Photo" class="img-responsive">
+                <div class="profile-photo-overlay"></div>
+            </div>
+
+            <div class="mobile-menu-icon">
+                <i class="fa fa-bars"></i>
+            </div>
+            <nav class="templatemo-left-nav">
+                <ul>
+
+                    <!--PRODUKTY-->
+
+                    <li><a asp-controller="Product" asp-action="GetAll"><i class="fa fa-home fa-fw"></i>Produkty</a></li>
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <!-- ZAMÓWIENIA -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fa fa-bar-chart fa-fw"></i>
+                                Zamówienia
+                            </a>
+                            <div class="dropdown-menu" style="background-color:#404040; ">
+                                <a asp-controller="Order" asp-action="SubmitComplaint" class="dropdown-item" style=" color:#d9d9d9">Wyszukaj zamówienie</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="Order" asp-action="GetAll" class="dropdown-item" style=" color:#d9d9d9">Wyświetl</a>
+                                <div class="dropdown-divider"></div>
+
+
+                            </div>
+                        </li>
+                    }
+
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Biuro") || User.IsInRole("Admin")))
+                    {
+                        <!-- REKLAMACJE -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fa fa-bar-chart fa-fw"></i>
+                                Reklamacje
+                            </a>
+                            <div class="dropdown-menu" style="background-color:#404040; ">
+                                <a asp-controller="Complaint" asp-action="SubmitComplaint" class="dropdown-item" style=" color:#d9d9d9">Złóż reklamacje</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="Complaint" asp-action="CheckComplaint" class="dropdown-item" style=" color:#d9d9d9">Sprawdź status</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="Complaint" asp-action="GetAll" class="dropdown-item" style=" color:#d9d9d9">Wszystkie</a>
+                                <div class="dropdown-divider"></div>
+
+                            </div>
+                        </li>
+                    }
+
+
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Biuro") || User.IsInRole("Admin")))
+                    {
+                        <!-- FAKTURY -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fa fa-bar-chart fa-fw"></i>
+                                Faktury
+                            </a>
+                            <div class="dropdown-menu" style="background-color:#404040; ">
+                                <a asp-controller="Invoice" asp-action="InsertPrintInvoices" class="dropdown-item" style=" color:#d9d9d9">Pokaż fakturę</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="Invoice" asp-action="GetAll" class="dropdown-item" style=" color:#d9d9d9">Wyświetl</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="Invoice" asp-action="InsertUpdate" class="dropdown-item" style=" color:#d9d9d9">Koryguj</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                    }
+
+
+
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Magazyn") || User.IsInRole("Admin")))
+                    {
+                        <!--Magazyn-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fa fa-database fa-fw"></i>
+                                Magazyn
+                            </a>
+                            <div class="dropdown-menu" style="background-color:#404040; ">
+                                <a asp-controller="PackingNote" asp-action="Manager" class="dropdown-item" style=" color:#d9d9d9">Trigger</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="PackingNote" asp-action="InsertOrderGoods" class="dropdown-item" style=" color:#d9d9d9">Przyjmij zamówienie</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="PackingNote" asp-action="InsertPickUpGoods" class="dropdown-item" style=" color:#d9d9d9">Przyjmij gotowe zamówienie</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="PackingNote" asp-action="InsertGiveGoods" class="dropdown-item" style=" color:#d9d9d9">Wydaj</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="PackingNote" asp-action="ReviewPackingNotes" class="dropdown-item" style=" color:#d9d9d9">Wszystkie</a>
+                                <div class="dropdown-divider"></div>
+
+                            </div>
+                        </li>
+                    }
+
+
+                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("Dostawy") || User.IsInRole("Admin")))
+                    {
+                        <!--DOSTAWY-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fa fa-map-marker fa-fw"></i>
+                                Dostawy
+                            </a>
+                            <div class="dropdown-menu" style="background-color:#404040; ">
+                                <a asp-controller="DeliveryNote" asp-action="InsertConfirmDelivery" class="dropdown-item" style=" color:#d9d9d9">Potwierdź</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="DeliveryNote" asp-action="ReviewDeliveryNotes" class="dropdown-item" style=" color:#d9d9d9">Wszystkie</a>
+                                <div class="dropdown-divider"></div>
+
+                            </div>
+                        </li>
+                    }
+
+                    <!--ADMIN-->
+                    <li><a asp-controller="Account" asp-action="Login"><i class="fa fa-eject fa-fw"></i>Admin Login</a></li>
+                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <i class="fa fa-map-marker fa-fw"></i>
+                                Admin Panel
+                            </a>
+                            <div class="dropdown-menu" style="background-color:#404040; ">
+                                <a asp-controller="Account" asp-action="CreateRole" class="dropdown-item" style=" color:#d9d9d9">Nowa rola</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="Account" asp-action="GetRoles" class="dropdown-item" style=" color:#d9d9d9">Wyświetl role</a>
+                                <div class="dropdown-divider"></div>
+                                <a asp-controller="Account" asp-action="Register" class="dropdown-item" style=" color:#d9d9d9">Zarejestruj użytkownika</a>
+                                <div class="dropdown-divider"></div>
+                            </div>
+                        </li>
+                    }
+
+
+                </ul>
+            </nav>
+        </div>
+        <!-- Main content -->
+        <div>
+
+            @model WebApplication3.Models.Product.ProductIndexModel
+            @{
+                ViewData["Title"] = "GetAll";
+            }
+
+            <div>
+                <br />
+                <h4>
+                    KATALOG WSZYSTKICH PRODUKTOW
+                </h4>
+                <br />
+
+
+            </div>
+
+            @foreach (ProductIndexListingModel item in Model.Products)
+            {
+                @Html.Partial("ViewSummary", item)
+            }
+
+        </div>
+
+    </div>
+    <div class="templatemo-content-container">
+
+        <footer class="text-right">
+            <p style="color:white">
+                Copyright &copy; 2084 Company Name
+                | Design: Template Mo
+            </p>
+        </footer>
+    </div>
+    <!-- JS -->
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>        <!-- jQuery -->
+    <script type="text/javascript" src="js/bootstrap-filestyle.min.js"></script>  <!-- http://markusslima.github.io/bootstrap-filestyle/ -->
+    <script type="text/javascript" src="js/templatemo-script.js"></script>        <!-- Templatemo Script -->
+</body>
+</html>

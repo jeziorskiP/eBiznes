@@ -1,0 +1,65 @@
+﻿
+
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+    <div style="margin:100px;padding-top:80px">
+
+
+        @model WebApplication3.Models.Invoice.InvoiceListingModel
+
+        @{
+            ViewData["Title"] = "GetAll";
+        }
+
+
+
+        <div id="pn">
+            <h3>Faktury</h3>
+            <div id="exercisesTable">
+                <table class="table table-condensed" id="catalogIndexTable">
+                    <thead>
+                        <tr>
+                            <td>Numer faktury</td>
+                            <td>Data utworzenia</td>
+                            <td>Zaksięgowane</td>
+                            <td>Numer zamówienia</td>
+                            <td>Wartość</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var i in Model.Invoices)
+                        {
+                            <tr class="clientRow">
+                                <td class="">@i.InvoiceNumber</td>
+                                <td class="">@i.InvoiceTime</td>
+                                <td class="">@i.Post</td>
+                                <td class="">@i.OrderNumber</td>
+                                <td class="">@i.TotalPriceBrutto</td>
+                                <td class="">
+                                    <a asp-controller="Invoice" asp-action="Post" asp-route-InvoiceId="@i.InvoiceId">
+                                        Zaksięguj
+                                    </a>
+                                </td>
+                                <td class="">
+                                    <a asp-controller="Invoice" asp-action="ShowInvoice" asp-route-OrderId="@i.OrderId" asp-route-email="admin" asp-route-ActionId="2">
+                                        Szczegóły
+                                    </a>
+                                </td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div>
+            <a asp-controller="Home" asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>

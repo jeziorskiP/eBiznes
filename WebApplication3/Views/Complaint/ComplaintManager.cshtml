@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "ComplaintManager";
+}
+
+<h2>ComplaintManager</h2>
+
+<div id="complaintId">
+    <div id="complaintTable">
+        <table class="table table-condensed" id="catalogIndexTable">
+            <tbody>
+                <tr class="complaintRow">
+
+                    <td class="">
+                        <a asp-controller="Complaint" asp-action="SubmitComplaint">
+                            Złóż reklamacje
+                        </a>
+                    </td>
+                    <td class="">
+                        <a asp-controller="Complaint" asp-action="CheckComplaint">
+                            Sprawdź stan reklamacji
+                        </a>
+                    </td>
+                    <td class="">
+                        <a asp-controller="Complaint" asp-action="GetAll">
+                            Wyświetl wszystkie
+                        </a>
+                    </td>
+
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

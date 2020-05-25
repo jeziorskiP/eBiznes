@@ -1,0 +1,78 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+    <div style="margin:100px;padding-top:80px">
+
+
+        @model WebApplication3.Models.PackingNotes.PackingNoteListingModel
+        @{
+            ViewData["Title"] = "ReviewPackingNotes";
+        }
+
+        <h2>Kwity magazynowe</h2>
+
+
+
+        <div id="pn">
+            <div id="exercisesTable">
+                <table class="table table-condensed" id="catalogIndexTable">
+                    <thead>
+                        <tr>
+                            <td>Number kwitu</td>
+                            <td>Data utworzenia</td>
+                            <td>Status</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var pn in Model.PackingNotes)
+                        {
+                            <tr class="clientRow">
+                                <td class="">@pn.PackingNoteNumber</td>
+                                <td class="">@pn.CreationDate</td>
+                                <td class="">@pn.Status</td>
+                                <td class="">
+                                    <a asp-controller="PackingNote" asp-action="PackingNoteDetails" asp-route-PackingNoteId="@pn.PackingNoteId">
+                                        Szczegóły
+                                    </a>
+                                </td>
+                                @if (pn.Status == "Rozpoczęte")
+                                {
+                                    <td class="">
+                                        <a asp-controller="PackingNote" asp-action="OrderGoods" asp-route-PackingNoteId="@pn.PackingNoteId">
+                                            Zleć zamówienie
+                                        </a>
+                                    </td>
+
+                                }
+                                else if (pn.Status == "Zlecono zamówienie")
+                                {
+                                    <td class="">
+                                        <a asp-controller="PackingNote" asp-action="PickUpGoods" asp-route-PackingNoteId="@pn.PackingNoteId">
+                                            Potwierdź przyjęcie na magazyn
+                                        </a>
+                                    </td>
+                                }
+                                else if (pn.Status == "Na magazynie")
+                                {
+                                    <td class="">
+                                        <a asp-controller="PackingNote" asp-action="GiveGoods" asp-route-PackingNoteId="@pn.PackingNoteId" asp-route-OrderId="0">
+                                            Wydaj
+                                        </a>
+                                    </td>
+                                }
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div>
+            <a asp-controller="Home" asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>

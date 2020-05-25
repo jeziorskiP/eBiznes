@@ -1,0 +1,62 @@
+﻿@model WebApplication3.Models.Product.ProductIndexListingModel
+@{
+    ViewData["Title"] = "ViewSummary";
+    string Nazwa = "~/images/10006.jpg";
+}
+
+
+
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        @if (Model.ProductNumber == 1000)
+        {
+            <img src="~/images/1000.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 1001)
+        {
+            <img src="~/images/1008.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 1002)
+        {
+            <img src="~/images/1002.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 1003)
+        {
+            <img src="~/images/1003.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 1004)
+        {
+            <img src="~/images/1004.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 1005)
+        {
+            <img src="~/images/1007.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 1006)
+        {
+            <img src="~/images/1006.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 2001)
+        {
+            <img src="~/images/2001.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 2002)
+        {
+            <img src="~/images/2003_.jpg" alt="" height="200" width="200" />
+        }
+        else if (Model.ProductNumber == 2003)
+        {
+            <img src="~/images/2003.jpg" alt="" height="200" width="200" />
+        }
+        <div class="caption">
+            <h3 class="pull-right">@Model.Price</h3>
+            <h3>
+                <a asp-controller="Product" asp-action="ProductDetails" asp-route-ProductId="@Model.Id">@Model.Name</a>
+
+            </h3>
+            <p>@Model.Purpose</p>
+        </div>
+
+    </div>
+
+</div>

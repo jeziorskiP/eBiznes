@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Manager";
+}
+
+<h2>Manager</h2>
+
+<div>
+    <td>
+        <a asp-controller="PackingNote" asp-action="Trigger">Trigger</a>
+    </td>
+</div>
+<div></div>
+<div>
+    <td>
+        <a asp-action="InsertOrderGoods">Przyjmij zamówienie</a>
+    </td>
+</div>
+<div></div>
+<div>
+    <td>
+        <a asp-action="InsertPickUpGoods">Przyjmij gotowe zamówienie</a>
+    </td>
+</div>
+<div></div>
+<div>
+    <td>
+        <a asp-action="InsertGiveGoods" asp-route-OrderId="@ViewBag.OrderId">Wydaj</a>
+    </td>
+</div>
+
+<div></div>
+<div>
+    <td>
+        <a asp-controller="PackingNote" asp-action="ReviewPackingNotes">ReviewPackingNotes</a>
+    </td>
+</div>

@@ -1,0 +1,45 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+
+        @model WebApplication3.Models.Client.ClientIndexListingModel
+
+
+        <h2>Dane kupującego</h2>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="FulfillClient">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Name" class="control-label">Imię</label>
+                        <input asp-for="Name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Surname" class="control-label">Nazwisko</label>
+                        <input asp-for="Surname" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumer" class="control-label">Numer Telefonu</label>
+                        <input asp-for="PhoneNumer" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="email" class="control-label">Adres email</label>
+                        <input asp-for="email" class="form-control" />
+                    </div>
+
+                    <td>
+                        <button asp-action="FulfillClient" asp-route-OrderId="@ViewBag.OrderId">Potwierdź</button>
+                    </td>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

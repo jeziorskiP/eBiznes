@@ -1,0 +1,76 @@
+﻿
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+        @model WebApplication3.Models.Order.OrderListingModel
+        @{
+            ViewData["Title"] = "GetAll";
+        }
+
+        <div id="pn">
+            <h3>Zamówienia</h3>
+
+
+            <div>
+
+                @using (Html.BeginForm("GetAll", "Order"))
+                {
+                    <input id="filter" name="filter" type="hidden" value="Yes" />
+                    <label for="OrderNumber">Numer zamówienia</label>
+                    <input id="OrderNumber" name="OrderNumber" type="text" />
+                    <input type="submit" value="Potwierdź" />
+                }
+
+            </div>
+
+
+
+            <div id="exercisesTable">
+                <table class="table table-condensed" id="catalogIndexTable">
+                    <thead>
+                        <tr>
+                            <td>Numer zamówienia</td>
+                            <td>Data zamówienia</td>
+                            <td>Status</td>
+                            <td>Data zmiany statusu</td>
+                            <td>Data ukończenia zlecenia</td>
+                            <td>Wartość</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var o in Model.Orders)
+                        {
+                            <tr class="clientRow">
+                                <td class="">@o.OrderNumber</td>
+                                <td class="">@o.OrderedDate</td>
+                                <td class="">@o.Status</td>
+                                <td class="">@o.StatusChangeDate</td>
+                                <td class="">@o.OrderCompletenessDate</td>
+                                <td class="">@o.TotalPrice</td>
+                                <td class="">
+                                    <a asp-controller="Order" asp-action="OrderSummary" asp-route-ActionId="4" asp-route-OrderId="@o.Id">
+                                        Szczegóły
+                                    </a>
+                                </td>
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+        <div>
+            <a asp-controller="Home" asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg"   >
+
+    <div style="margin:100px;padding-top:80px">
+
+        @{
+            ViewData["Title"] = "CheckComplaint";
+        }
+
+        <h2>Status reklamacji</h2>
+        <p>Podaj Numer zamówienia i adres email w celu weryfikacji</p>
+
+        @using (Html.BeginForm("ShowComplaint", "Complaint"))
+        {
+            <label for="OrderNumber">Numer zamówienia</label>
+            <input id="OrderNumber" name="OrderNumber" type="text" />
+            if (SignInManager.IsSignedIn(User))
+            {
+
+                <input id="email" name="email" type="hidden" value="admin" />
+            }
+            else
+            {
+                <label for="email">Adres email</label>
+                <input id="email" name="email" type="text" />
+            }
+
+
+
+
+            <input type="submit" value="Potwierdź" />
+        }
+
+
+
+
+    </div>
+
+
+</div>

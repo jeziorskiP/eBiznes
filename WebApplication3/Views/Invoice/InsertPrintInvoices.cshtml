@@ -1,0 +1,39 @@
+﻿
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+    <div style="margin:100px;padding-top:80px">
+
+
+        @{
+            ViewData["Title"] = "InsertPrintInvoices";
+        }
+
+        <h2>Faktury</h2>
+
+        @using (Html.BeginForm("PrintInvoice", "Invoice"))
+        {
+            <b>
+                Numer faktury/numer zamówienia:
+            </b>
+            <br />
+            @Html.RadioButton("SearchBy", "InvoiceNumber", true) <text>Numer faktury</text>
+            <br />
+            @Html.RadioButton("SearchBy", "OrderNumber") <text>Numer zamówienia</text>
+            <br />
+            <b>
+                Numer:
+            </b>
+            <input id="OrderNumber" name="OrderNumber" type="text" />
+
+            <br />
+            @Html.RadioButton("email", "admin", true)
+            <input type="submit" value="Potwierdź" />
+        }
+
+        <div>
+            <a asp-controller="Home" asp-action="Index">Powrót</a>
+        </div>
+    </div>
+</div>

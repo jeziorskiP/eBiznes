@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+    <div style="margin:100px;padding-top:80px">
+
+
+
+        @{
+            ViewData["Title"] = "PAYUPage";
+        }
+
+        <h2>PAYUPage</h2>
+
+        <div>PLACTOSC ZA POMOCA ZEWNETRZNEGO SYSTEMU.</div>
+        <div>FAKTURA ID: @ViewBag.InvoiceId</div>
+
+
+
+        <div>Zakładamy ze po klieknieciu na tzrycisk przechodzimy do zewnetrzenego modulu, a po zaplaceniu wracamy na strone glowna. I EMAIL</div>
+
+        <div>
+            <td>
+                <a asp-controller="Home" asp-action="Index">PayU</a>
+            </td>
+        </div>
+    </div>
+</div>

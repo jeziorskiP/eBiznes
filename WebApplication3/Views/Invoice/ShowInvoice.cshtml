@@ -1,0 +1,203 @@
+﻿
+
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager;
+
+<div id="main" class="templatemo-content col-1 light-gray-bg">
+
+
+    <div style="margin:20px">
+
+
+        @model WebApplication3.Models.Invoice.InvoiceIndexListingModel
+
+        @{
+            ViewData["Title"] = "ShowInvoice";
+        }
+
+
+        <div>
+
+
+            <div style="width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1)">
+
+
+
+                <div style="font-size:15px;width:65%;height:30px;float:left;"></div>
+                <div style="font-size:15px;width:35%;height:30px;float:left;text-align: right">Miejscowosc: Łódź</div>
+                <div style="font-size:15px;width:65%;height:30px;float:left;"></div>
+                <div style="font-size:15px;width:35%;height:auto;float:left;text-align: right">Data faktury: @Model.InvoiceTime.ToString("dd/MM/yyyy")</div>
+
+
+                <div style="font-size:15px;width:100%;height:auto;float:left;text-align: right">Data wygenerowania: @DateTime.Now.ToString("dd/MM/yyyy")</div>
+
+                <div style="font-size:15px;width:100%;height:20px;float:left;"></div>
+                <div style="font-size: 25px;width: 100%;height: 50px; text-align: center ">Faktura Nr @Model.InvoiceNumber</div>
+
+                <div style="font-size:15px;width:100%;height:100px;float:left;"></div>
+                <div style="font-size:20px;width: 100%;height: auto; text-align: left ">Zamówienie Nr @Model.OrderNumber</div>
+
+                <div style="font-size:15px;width:65%;height:30px;float:left;">
+                    <text style="font-size:17px"><u><b>Sprzedawca</b></u></text>
+                    <div>Baloon</div>
+                    <div>K.Kłys O.Kalinowska P.Jeziorski</div>
+                    <div>Nowa 12</div>
+                    <div>93-258 Łódź</div>
+                    <div>Polska</div>
+                    <div>NIP: 741-852-65-89</div>
+
+
+
+                </div>
+                <div style="font-size:15px;width:35%;height:30px;float:left;">
+                    <text style="font-size:17px"><u><b>Odbiorca</b></u></text>
+                    <div>@Model.ClientName @Model.ClientSurname</div>
+                    <div>@Model.AddressStreet @Model.AddressStreetNumber @Model.AddressAppartmentNumber</div>
+                    <div>@Model.AddressPostCode @Model.AddressCity</div>
+                    <div>@Model.AddressCountry</div>
+                    <div>@Model.ClientPhoneNumer</div>
+                    <div>@Model.Clientemail</div>
+
+
+                </div>
+                <div style="font-size:15px;width:100%;height:200px;float:left;"></div>
+                <div style="font-size:15px;width:100%;height:auto;float:left;">
+
+
+                    <table style="width:100%">
+                        <thead style="border:1px black solid">
+                            <tr>
+                                <th style="width:5%;text-align: center">L.P.</th>
+                                <th style="width:35%">Przedmiot</th>
+                                <th style="width:5%">Ilosc</th>
+                                <th style="width:15%">Cena brutto</th>
+                                <th style="width:15%">Cena netto</th>
+                                <th style="width:10%">Vat</th>
+                                <th style="width:20%">Razem brutto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int counter = 1;
+                                foreach (var item in Model.Lines.InvoiceLines)
+                                {
+                                    <tr>
+                                        <td style="text-align: center">@counter</td>
+                                        <td>@item.ProductName</td>
+
+                                        <td style="text-align: center">@item.Amount</td>
+                                        <td style="text-align: center">@item.Price</td>
+                                        <td style="text-align: center">@item.PriceNetto</td>
+                                        <td style="text-align: center">@item.Tax</td>
+                                        <td style="text-align: right">@item.TotalPrice</td>
+                                    </tr>
+                                    counter = counter + 1;
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="font-size:15px;width:100%;height:10px;float:left;"></div>
+                <div style="font-size:15px;width:100%;height:200px;float:left;">
+
+                    <div style="font-size:15px;width:60%;height:200px;float:left;"> </div>
+                    <div style="font-size:15px;width:40%;height:200px;float:left;">
+                        <table style="width:100%">
+                            <thead style="border:1px black solid">
+                                <tr>
+                                    <th style="width:35%;text-align: center">Cena netto</th>
+                                    <th style="width:24%;text-align: center">Vat</th>
+                                    <th style="width:35%;text-align: center">Razem brutto</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align: center">
+                                <tr>
+                                    <td>@Model.TotalPriceNetto</td>
+                                    <td>@Model.TotalTax</td>
+                                    <td>@Model.TotalPriceBrutto</td>
+                                </tr>
+
+
+                            </tbody>
+
+
+
+
+
+
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div style="font-size:15px;width: 50%; margin: 0 auto;">
+
+            <div style="font-size: 15px;width:40%;text-align: center;border:solid;float:left">
+                @if (ViewBag.ActionId == 2)
+                {
+                    <a asp-controller="Invoice" asp-action="GetAll">
+                        Powrót
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Home" asp-action="Index">
+                        Powrót
+                    </a>
+                }
+
+
+
+            </div>
+            <div style="font-size:15px;width:40%;text-align: center;border:solid;float:right">
+                <a asp-controller="Invoice" asp-action="InvoiceExport" asp-route-OrderId="@Model.OrderId">
+                    Drukuj
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div style="font-size:15px;width: 100%; height: 50px; margin: 0 auto;"></div>
+
+        <style>
+            page {
+                width: 21cm;
+                min-height: 29.7cm;
+                padding: 2cm;
+                margin: 1cm auto;
+                border: 1px #D3D3D3 solid;
+                border-radius: 5px;
+                background: white;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            }
+
+            td {
+                border: 1px solid black;
+            }
+
+            th {
+                border: 1px solid black;
+                background: #e6e6e6;
+                text-align: center
+            }
+        </style>
+
+    </div>
+</div>
+
+  
