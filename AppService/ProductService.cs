@@ -1,6 +1,7 @@
 ﻿using DataContext;
 using DataContext.Interfaces;
 using DataContext.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,11 @@ namespace AppService
         public IEnumerable<Product> GetAll()
         {
             return _dbContext.Products;
+        }
+
+        public IOrderedQueryable<Product> GetAllQuery()
+        {
+           return  _dbContext.Products.AsNoTracking().OrderBy(o => o.ProductNumber);
         }
 
         public Product GetProduct(int ProductId)

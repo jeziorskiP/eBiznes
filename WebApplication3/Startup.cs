@@ -18,6 +18,7 @@ using DinkToPdf;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using ReflectionIT.Mvc.Paging;
 
 namespace WebApplication3
 {
@@ -76,7 +77,7 @@ namespace WebApplication3
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddSessionStateTempDataProvider();
             services.AddSession();
-
+            services.AddPaging();
             services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
         }
 

@@ -37,7 +37,13 @@
         -->
         <div class="row">
 
-            @model WebApplication3.Models.Product.ProductIndexModel
+            @model ReflectionIT.Mvc.Paging.IPagingList<DataContext.Model.Product>
+            @using ReflectionIT.Mvc.Paging
+            
+            
+            <nav aria-label="Paging">
+                @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model})
+            </nav>
             <div style="padding-left:50px">
 
                 @await Html.PartialAsync("Carousel")
@@ -45,7 +51,7 @@
             <div style="width:100%;height:50px"></div>
             <div style="padding-left:35px">
 
-                @foreach (ProductIndexListingModel item in Model.Products)
+                @foreach (var item in Model)
                 {
                     @Html.Partial("ViewSummary", item)
                 }
